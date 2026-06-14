@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Clinique MédiSanté | Douala - Cameroun | Soins d'excellence</title>
+    <!-- Google Fonts + Font Awesome 6 (gratuit) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbfef9;
+            color: #1a2c3e;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Variables couleurs professionnelles – bleu médical, or doux, vert santé */
+        :root {
+            --primary: #0c6b5e;
+            --primary-dark: #084e44;
+            --secondary: #2c7da0;
+            --accent: #f4b942;
+            --light: #f0f7f4;
+            --dark: #1e2f3a;
+            --gray: #5d6e7a;
+            --white: #ffffff;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        /* animations globales */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(12, 107, 94, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(12, 107, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(12, 107, 94, 0); }
+        }
+
+        .section {
+            padding: 5rem 1.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navbar moderne */
+        .navbar {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 8px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--gray);
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--dark);
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        .btn-nav {
+            background: var(--primary);
+            color: white !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            transition: var(--transition);
+        }
+        .btn-nav:hover {
+            background: var(--primary-dark);
+            transform: scale(0.98);
+            box-shadow: var(--shadow-sm);
+        }
+        .menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, #eef9f2 0%, #ffffff 100%);
+            border-radius: 0 0 3rem 3rem;
+            padding: 3rem 1.5rem 4rem;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1.2;
+            animation: fadeUp 0.8s ease-out;
+        }
+        .hero-badge {
+            background: var(--accent);
+            color: #2c2b28;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin: 1.5rem 0;
+            max-width: 90%;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .hero-illustration {
+            flex: 0.9;
+            text-align: center;
+            position: relative;
+        }
+        .hero-illustration i {
+            font-size: 12rem;
+            color: var(--primary);
+            opacity: 0.8;
+            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.1));
+            animation: floatIcon 3s infinite ease-in-out;
+        }
+
+        /* cartes spécialités */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .section-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+        .specialities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: var(--white);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(12, 107, 94, 0.2);
+        }
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* réalisations / accomplissements */
+        .achievements {
+            background: linear-gradient(120deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            color: white;
+            margin: 2rem auto;
+        }
+        .achievements-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            text-align: center;
+        }
+        .achieve-item i {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .achieve-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        /* Formulaire de rendez-vous modern */
+        .form-card {
+            background: var(--white);
+            border-radius: 2rem;
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.2rem;
+            font-family: inherit;
+            transition: 0.2s;
+            background: #fefefe;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(12, 107, 94, 0.2);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: scale(0.98);
+            box-shadow: 0 10px 20px -5px rgba(12,107,94,0.4);
+        }
+
+        /* footer */
+        footer {
+            background: #0b2b26;
+            color: #cddfda;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .footer-col i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        .social-icons a {
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            transition: 0.2s;
+        }
+        .social-icons a:hover { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .menu-btn { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background: white;
+                width: 80%;
+                height: 100vh;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem;
+                box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+                transition: 0.4s;
+                gap: 1.8rem;
+                z-index: 999;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .hero-stats {
+                flex-wrap: wrap;
+            }
+            .achievements-grid {
+                justify-content: center;
+            }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            z-index: 99;
+        }
+        .floating-whatsapp:hover { transform: scale(1.05); background: #128C7E; }
+    </style>
+</head>
+<body>
+
+<!-- WhatsApp flottant -->
+<a href="https://wa.me/237691000000?text=Bonjour%2C%20je%20souhaite%20prendre%20rendez-vous%20à%20la%20Clinique%20MédiSanté" class="floating-whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>MédiSanté <i class="fas fa-heartbeat" style="color: var(--primary);"></i></h1>
+            <span>Clinique spécialisée · Douala Cameroun</span>
+        </div>
+        <div class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#accueil" class="active">Accueil</a></li>
+            <li><a href="#specialites">Spécialités</a></li>
+            <li><a href="#realisations">Réalisations</a></li>
+            <li><a href="#rendezvous">Rendez-vous</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#rendezvous" class="btn-nav">Urgence ? <i class="fas fa-phone-alt"></i> +237 691 000 000</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section (Accueil) -->
+<section id="accueil" class="hero">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-stethoscope"></i> Excellence médicale au Cameroun</div>
+            <h1>Votre santé, <br>notre engagement <span style="color: var(--primary);">sans limite</span></h1>
+            <p>Clinique MédiSanté, située au cœur de Douala (Bonapriso), vous offre des soins de pointe, un plateau technique moderne et une équipe de spécialistes dédiés. Prenez rendez-vous en ligne en quelques clics.</p>
+            <div class="hero-stats">
+                <div class="stat-item"><h3>+12</h3><span>Spécialités</span></div>
+                <div class="stat-item"><h3>15k+</h3><span>Patients suivis</span></div>
+                <div class="stat-item"><h3>98%</h3><span>Satisfaction</span></div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <a href="#rendezvous" class="btn-primary" style="display: inline-block; text-decoration: none; width: auto; padding: 0.9rem 2rem;">Prendre rendez-vous <i class="fas fa-calendar-check"></i></a>
+            </div>
+        </div>
+        <div class="hero-illustration">
+            <i class="fas fa-hand-holding-heart"></i>
+            <div style="margin-top: -1rem;"><i class="fas fa-microscope" style="font-size: 4rem; opacity: 0.6;"></i></div>
+        </div>
+    </div>
+</section>
+
+<!-- Spécialités médicales : tous les domaines -->
+<section id="specialites" class="section">
+    <div class="section-header animate-on-scroll">
+        <h2>Nos spécialités médicales</h2>
+        <p>Une couverture complète des soins avec des experts reconnus à Douala et toute la région du Littoral.</p>
+    </div>
+    <div class="specialities-grid">
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-heartbeat"></i></div><h3>Cardiologie</h3><p>Prévention, diagnostic et traitement des pathologies cardiaques.</p></div>
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-child"></i></div><h3>Pédiatrie</h3><p>Suivi médical complet de la naissance à l'adolescence.</p></div>
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-female"></i></div><h3>Gynécologie</h3><p>Santé de la femme, obstétrique et suivi de grossesse.</p></div>
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-bone"></i></div><h3>Orthopédie</h3><p>Traumatologie, chirurgie osseuse et rééducation.</p></div>
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-brain"></i></div><h3>Neurologie</h3><p>Prise en charge des troubles neurologiques complexes.</p></div>
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-x-ray"></i></div><h3>Radiologie & Imagerie</h3><p>IRM, scanner, échographie de dernière génération.</p></div>
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-lungs"></i></div><h3>Pneumologie</h3><p>Allergies, asthme et pathologies respiratoires.</p></div>
+        <div class="card animate-on-scroll"><div class="card-icon"><i class="fas fa-eye"></i></div><h3>Ophtalmologie</h3><p>Consultation, laser et suivi visuel.</p></div>
+    </div>
+</section>
+
+<!-- Accomplissements / Ce que la clinique a déjà accompli -->
+<section id="realisations" class="section">
+    <div class="achievements animate-on-scroll">
+        <div class="section-header" style="color: white;">
+            <h2 style="color: white;">Nos accomplissements</h2>
+            <p style="color: #f0f0f0;">Des résultats concrets qui font notre fierté</p>
+        </div>
+        <div class="achievements-grid">
+            <div class="achieve-item"><i class="fas fa-calendar-check"></i><h3 id="counter1">0</h3><p>Consultations/an</p></div>
+            <div class="achieve-item"><i class="fas fa-procedures"></i><h3 id="counter2">0</h3><p>Interventions chirurgicales</p></div>
+            <div class="achieve-item"><i class="fas fa-smile"></i><h3 id="counter3">0</h3><p>Patients satisfaits</p></div>
+            <div class="achieve-item"><i class="fas fa-award"></i><h3 id="counter4">0</h3><p>Années d'excellence</p></div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+        <p><i class="fas fa-trophy" style="color: var(--accent);"></i> <strong>Reconnue comme meilleure clinique privée de Douala en 2025 & 2026</strong> — Certification ISO 9001 en cours.</p>
+    </div>
+</section>
+
+<!-- Formulaire de réservation (prise de rendez-vous) -->
+<section id="rendezvous" class="section">
+    <div class="section-header animate-on-scroll">
+        <h2>Prenez rendez-vous en ligne</h2>
+        <p>Remplissez le formulaire, notre équipe vous confirmera par SMS ou appel sous 2h.</p>
+    </div>
+    <div class="form-card animate-on-scroll">
+        <form id="appointmentForm">
+            <div class="form-group"><input type="text" id="fullname" placeholder="Nom complet *" required></div>
+            <div class="form-group"><input type="email" id="email" placeholder="Adresse email" ></div>
+            <div class="form-group"><input type="tel" id="phone" placeholder="Téléphone *" required></div>
+            <div class="form-group">
+                <select id="service" required>
+                    <option value="">Choisissez une spécialité</option>
+                    <option>Cardiologie</option><option>Pédiatrie</option><option>Gynécologie</option>
+                    <option>Orthopédie</option><option>Neurologie</option><option>Radiologie</option>
+                    <option>Ophtalmologie</option><option>Médecine générale</option>
+                </select>
+            </div>
+            <div class="form-group"><input type="date" id="date" required></div>
+            <div class="form-group"><textarea rows="3" placeholder="Message / symptômes (optionnel)"></textarea></div>
+            <button type="submit" class="btn-primary"><i class="fas fa-check-circle"></i> Confirmer ma réservation</button>
+            <p style="font-size: 0.8rem; margin-top: 1rem; text-align: center;"><i class="fas fa-lock"></i> Vos données sont sécurisées</p>
+        </form>
+        <div id="formFeedback" style="margin-top: 1rem; font-weight: 500; text-align: center;"></div>
+    </div>
+</section>
+
+<!-- Contact & localisation -->
+<section id="contact" class="section">
+    <div class="section-header animate-on-scroll">
+        <h2>Nous trouver</h2>
+        <p>À Douala, proche de tous axes.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+        <div class="card" style="flex:1; min-width: 250px;">
+            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary);"></i>
+            <h3>Adresse</h3>
+            <p>Boulevard de la Liberté, Bonapriso – Douala, Cameroun<br>En face de la clinique générale</p>
+        </div>
+        <div class="card" style="flex:1;">
+            <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--primary);"></i>
+            <h3>Urgences 24/7</h3>
+            <p>+237 691 000 000 / +237 222 123 456</p>
+            <p>Email: contact@medisante.cm</p>
+        </div>
+        <div class="card" style="flex:1;">
+            <i class="fas fa-clock" style="font-size: 2rem; color: var(--primary);"></i>
+            <h3>Horaires</h3>
+            <p>Lun - Ven : 7h30 – 20h00<br>Samedi : 8h – 16h<br>Dimanche : Urgences uniquement</p>
+        </div>
+    </div>
+    <div style="margin-top: 2rem; border-radius: 2rem; overflow: hidden; box-shadow: var(--shadow-sm);">
+        <iframe src="https://maps.google.com/maps?q=Douala%2C%20Bonapriso&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div class="footer-col"><i class="fas fa-copyright"></i> 2026 Clinique MédiSanté – Douala, Cameroun</div>
+        <div class="footer-col social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="footer-col">Conçu avec <i class="fas fa-heart" style="color: var(--accent);"></i> pour la santé des camerounais</div>
+    </div>
+</footer>
+
+<script>
+    // Menu mobile toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // Scroll animations (Intersection Observer)
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Compteurs statistiques (accomplissements avec animation)
+    const counters = [
+        { id: 'counter1', target: 15800, suffix: '+' },   // consultations/an
+        { id: 'counter2', target: 2450, suffix: '+' },     // interventions
+        { id: 'counter3', target: 15200, suffix: '+' },    // patients satisfaits
+        { id: 'counter4', target: 12, suffix: '' }         // années
+    ];
+    let started = false;
+    function startCounters() {
+        if (started) return;
+        started = true;
+        counters.forEach(c => {
+            let current = 0;
+            const element = document.getElementById(c.id);
+            const step = Math.ceil(c.target / 60);
+            const interval = setInterval(() => {
+                current += step;
+                if (current >= c.target) {
+                    element.innerText = c.target.toLocaleString() + (c.suffix || '');
+                    clearInterval(interval);
+                } else {
+                    element.innerText = current.toLocaleString() + (c.suffix ? '+' : '');
+                }
+            }, 25);
+        });
+    }
+    // Observer sur la section réalisations pour lancer compteurs
+    const achievementsSection = document.querySelector('.achievements');
+    const achieveObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            startCounters();
+            achieveObserver.unobserve(achievementsSection);
+        }
+    }, { threshold: 0.3 });
+    if(achievementsSection) achieveObserver.observe(achievementsSection);
+    
+    // Formulaire de réservation avec simulation
+    const form = document.getElementById('appointmentForm');
+    const feedbackDiv = document.getElementById('formFeedback');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('fullname').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value;
+        const date = document.getElementById('date').value;
+        if (!name || !phone || !service || !date) {
+            feedbackDiv.innerHTML = '<span style="color:#e53e3e;"><i class="fas fa-exclamation-circle"></i> Veuillez remplir tous les champs obligatoires.</span>';
+            return;
+        }
+        feedbackDiv.innerHTML = '<span style="color:#0c6b5e;"><i class="fas fa-spinner fa-pulse"></i> Envoi en cours...</span>';
+        setTimeout(() => {
+            feedbackDiv.innerHTML = '<span style="color:#2b7a4b;"><i class="fas fa-check-circle"></i> Rendez-vous enregistré ! Un agent vous recontactera sous 2h. Merci pour votre confiance.</span>';
+            form.reset();
+            setTimeout(() => feedbackDiv.innerHTML = '', 5000);
+        }, 1000);
+    });
+
+    // active link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 150;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+    // animation pré-chargement visible
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('visible');
+        });
+    });
+</script>
+</body>
+</html>
